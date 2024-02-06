@@ -1,7 +1,8 @@
 # To Do
 
 ## Tech Stack
-* ReactJS
-* TypeScript
-* Jest
-* ESLint + Prettier
+
+- ReactJS
+- TypeScript
+- Jest
+- ESLint + Prettier
