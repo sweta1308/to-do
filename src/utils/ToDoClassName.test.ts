@@ -14,12 +14,12 @@ describe('completedTodo function', () => {
 
   it('should return classNames with default values when item status is open', () => {
     const item = { id: 1, todo: 'Sample Todo', status: 'open' }
-    const expectedClassNames = {
+    const expectedValues = {
       listClassName: '',
       headClassName: '',
       isCompleted: false,
     }
     const result = completedTodo(item)
-    expect(result).toEqual(expectedClassNames)
+    expect(result).toEqual(expectedValues)
   })
 })
