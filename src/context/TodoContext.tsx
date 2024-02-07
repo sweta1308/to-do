@@ -15,6 +15,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   })
   const [toDo, setToDo] = useState<ToDoTypes[]>([])
   const [editId, setEditId] = useState<number>(0)
+  const [draggedItem, setDraggedItem] = useState<ToDoTypes>(null!)
 
   const openTodos = toDo.filter(
     ({ status }: { status: string }) => status === 'open',
@@ -80,6 +81,20 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   const getToDoName = (name: string) =>
     name.length > 40 ? name.substring(0, 40) + '...' : name
 
+  const handleDragStart = (index: number) => {
+    setDraggedItem(toDo[index])
+  }
+
+  const handleDragOver = (index: number) => {
+    const items = toDo.filter((item) => item !== draggedItem)
+    items.splice(index, 0, draggedItem)
+    setToDo(items)
+  }
+
+  const handleDragEnd = () => {
+    setDraggedItem(null!)
+  }
+
   const value = {
     inputState,
     openTodos,
@@ -92,6 +107,9 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleEdit,
     handleDelete,
     getToDoName,
+    handleDragStart,
+    handleDragOver,
+    handleDragEnd,
   }
   return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>
 }
