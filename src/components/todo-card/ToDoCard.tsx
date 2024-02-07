@@ -1,24 +1,35 @@
 import { useToDo } from 'context/TodoContext'
 import './ToDoCard.css'
 import { ToDoTypes } from 'context/TodoContext.types'
+import { completedTodo } from 'utils/ToDoClassName'
 
-const ToDoCard = ({ item }: { item: ToDoTypes }) => {
-  const { handleCheckboxChange, handleEdit, handleDelete, getToDoName } =
-    useToDo()
+const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
+  const {
+    handleCheckboxChange,
+    handleEdit,
+    handleDelete,
+    getToDoName,
+    handleDragStart,
+    handleDragOver,
+    handleDragEnd,
+  } = useToDo()
+  const { listClassName, headClassName, isCompleted } = completedTodo(item)
   return (
     <li
+      onDragStart={() => handleDragStart(index)}
+      onDragOver={() => handleDragOver(index)}
+      onDragEnd={handleDragEnd}
+      draggable
       key={item.id}
-      className={`${item.status === 'completed' && 'completed-item'}`}
+      className={`${listClassName}`}
     >
       <input
         type="checkbox"
-        checked={item.status === 'completed'}
+        checked={isCompleted}
         onChange={() => handleCheckboxChange(item)}
       />
       <div className="card-body">
-        <div
-          className={`todo-head ${item.status === 'completed' && 'head-line'}`}
-        >
+        <div className={`todo-head ${headClassName}`}>
           {getToDoName(item.todo)}
         </div>
         <div className="buttons">
