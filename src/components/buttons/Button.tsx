@@ -2,7 +2,13 @@ import { useToDo } from '../../context/TodoContext'
 import './Button.css'
 
 const Button = () => {
-  const { inputState, setInputState, handleSubmit } = useToDo()
+  const {
+    inputState,
+    handleSubmit,
+    handleInputChange,
+    handleCancelClick,
+    handleAddClick,
+  } = useToDo()
   const { isInputVisible, inputValue } = inputState
   return (
     <div data-testid="buttons">
@@ -11,29 +17,19 @@ const Button = () => {
           <input
             className="text-input"
             value={inputValue}
-            onChange={(e) =>
-              setInputState({ ...inputState, inputValue: e.target.value })
-            }
+            onChange={(e) => handleInputChange(e)}
           />
           <div>
             <button onClick={handleSubmit} className="button">
               Submit
             </button>
-            <button
-              onClick={() =>
-                setInputState({ inputValue: '', isInputVisible: false })
-              }
-              className="cancel-btn"
-            >
+            <button onClick={handleCancelClick} className="cancel-btn">
               Cancel
             </button>
           </div>
         </div>
       ) : (
-        <button
-          onClick={() => setInputState({ ...inputState, isInputVisible: true })}
-          className="button"
-        >
+        <button onClick={handleAddClick} className="button">
           Add Todo
         </button>
       )}
