@@ -31,6 +31,10 @@ input[type='checkbox'] {
   text-align: left;
 }
 
+.head-line {
+  text-decoration: line-through;
+}
+
 .completed-item {
   background-color: rgb(245, 243, 243);
   border: none;
