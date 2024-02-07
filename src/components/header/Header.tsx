@@ -15,6 +15,7 @@ const Header = () => {
       {isInputVisible ? (
         <div className="inputs">
           <input
+            placeholder="Enter Todo..."
             className="text-input"
             value={inputValue}
             onChange={(e) => handleInputChange(e)}
