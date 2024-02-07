@@ -11,7 +11,7 @@ const Header = () => {
   } = useToDo()
   const { isInputVisible, inputValue } = inputState
   return (
-    <div data-testid="buttons">
+    <div data-testid="header">
       {isInputVisible ? (
         <div className="inputs">
           <input
