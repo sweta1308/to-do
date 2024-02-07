@@ -78,9 +78,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     setInputState({ inputValue: '', isInputVisible: false })
   }
 
-  const getToDoName = (name: string) =>
-    name.length > 40 ? name.substring(0, 40) + '...' : name
-
   const handleDragStart = (index: number) => {
     setDraggedItem(toDo[index])
   }
@@ -106,7 +103,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleCheckboxChange,
     handleEdit,
     handleDelete,
-    getToDoName,
     handleDragStart,
     handleDragOver,
     handleDragEnd,
