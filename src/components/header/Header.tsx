@@ -1,7 +1,7 @@
 import { useToDo } from '../../context/TodoContext'
-import './Button.css'
+import './Header.css'
 
-const Button = () => {
+const Header = () => {
   const {
     inputState,
     handleSubmit,
@@ -37,4 +37,4 @@ const Button = () => {
   )
 }
 
-export default Button
+export default Header

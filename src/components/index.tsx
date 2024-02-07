@@ -1,4 +1,4 @@
-import Button from './buttons/Button'
+import Header from './header/Header'
 import ToDoList from './todo-list/ToDoList'
 
-export { Button, ToDoList }
+export { Header, ToDoList }
