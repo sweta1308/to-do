@@ -13,8 +13,8 @@ const ToDoList = () => {
           <h3>No Open Todos.</h3>
         ) : (
           <ul>
-            {openTodos.map((item: ToDoTypes) => (
-              <ToDoCard item={item} />
+            {openTodos.map((item: ToDoTypes, i: number) => (
+              <ToDoCard item={item} index={i} />
             ))}
           </ul>
         )}
@@ -25,8 +25,8 @@ const ToDoList = () => {
           <h3>No Completed Todos.</h3>
         ) : (
           <ul>
-            {completedTodos.map((item: ToDoTypes) => (
-              <ToDoCard item={item} />
+            {completedTodos.map((item: ToDoTypes, i: number) => (
+              <ToDoCard item={item} index={i} />
             ))}
           </ul>
         )}
