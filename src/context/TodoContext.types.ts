@@ -23,6 +23,9 @@ type ToDoContextProps = {
   handleEdit: (item: ToDoTypes) => void
   handleDelete: (item: ToDoTypes) => void
   getToDoName: (name: string) => string
+  handleDragStart: (index: number) => void
+  handleDragOver: (index: number) => void
+  handleDragEnd: () => void
 }
 
 type ToDoProviderProps = {
