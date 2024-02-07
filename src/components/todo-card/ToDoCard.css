@@ -11,6 +11,8 @@ li {
   padding-left: 15px;
   box-sizing: border-box;
   word-break: break-all;
+  background-color: white;
+  cursor: grab;
 }
 
 input[type='checkbox'] {
