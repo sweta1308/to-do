@@ -4,13 +4,7 @@ import ToDoCard from 'components/todo-card/ToDoCard'
 import { ToDoTypes } from 'context/TodoContext.types'
 
 const ToDoList = () => {
-  const { toDo } = useToDo()
-  const openTodos = toDo.filter(
-    ({ status }: { status: string }) => status === 'open',
-  )
-  const completedTodos = toDo.filter(
-    ({ status }: { status: string }) => status === 'completed',
-  )
+  const { openTodos, completedTodos } = useToDo()
   return (
     <div className="todo-list" data-testid="todo-list">
       <div className="column">
