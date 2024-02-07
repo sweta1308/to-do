@@ -43,8 +43,8 @@ const ToDoCard = ({ item }: { item: ToDoTypes }) => {
             textDecoration: item.status === 'completed' ? 'line-through' : '',
           }}
         >
-          {item.todo.length > 85
-            ? item.todo.substring(0, 85) + '...'
+          {item.todo.length > 40
+            ? item.todo.substring(0, 40) + '...'
             : item.todo}
         </div>
         <div className="buttons">
