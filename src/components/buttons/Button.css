@@ -1,0 +1,44 @@
+.button {
+  background-color: rgb(247, 108, 108);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.button:hover {
+  border-radius: 10px;
+  background-color: rgb(222, 66, 66);
+}
+
+.cancel-btn {
+  padding: 10px 15px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.cancel-btn:hover {
+  background-color: blanchedalmond;
+}
+
+.text-input {
+  padding: 10px 5px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+.inputs {
+  display: flex;
+}
+
+@media (max-width: 676px) {
+  .inputs {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
