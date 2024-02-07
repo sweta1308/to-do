@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react'
+import React, { ReactNode } from 'react'
 
 type ToDoTypes = {
   id: number
@@ -12,12 +12,17 @@ type InputTypes = {
 }
 
 type ToDoContextProps = {
-  toDo: ToDoTypes[]
-  setToDo: Dispatch<SetStateAction<ToDoTypes[]>>
+  openTodos: ToDoTypes[]
+  completedTodos: ToDoTypes[]
   inputState: InputTypes
-  setInputState: Dispatch<SetStateAction<InputTypes>>
+  handleInputChange: (e: React.FormEvent<HTMLInputElement>) => void
+  handleCancelClick: () => void
+  handleAddClick: () => void
   handleSubmit: () => void
-  setEditId: Dispatch<SetStateAction<number>>
+  handleCheckboxChange: (item: ToDoTypes) => void
+  handleEdit: (item: ToDoTypes) => void
+  handleDelete: (item: ToDoTypes) => void
+  getToDoName: (name: string) => string
 }
 
 type ToDoProviderProps = {
