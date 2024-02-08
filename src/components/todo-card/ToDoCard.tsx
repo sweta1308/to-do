@@ -32,14 +32,16 @@ const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
       />
       <div className="card-body">
         <div className={`todo-head ${headClassName}`}>{todoName}</div>
-        <div className="buttons">
-          <button onClick={() => handleEdit(item)} className="edit">
-            Edit
-          </button>
-          <button onClick={() => handleDelete(item)} className="delete">
-            Delete
-          </button>
-        </div>
+        {!isCompleted && (
+          <div className="buttons">
+            <button onClick={() => handleEdit(item)} className="edit">
+              Edit
+            </button>
+            <button onClick={() => handleDelete(item)} className="delete">
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </li>
   )
