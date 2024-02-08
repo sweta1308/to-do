@@ -11,7 +11,7 @@ const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
     handleDelete,
     handleDragStart,
     handleDragOver,
-    handleDragEnd,
+    handleDrop,
   } = useToDo()
   const { listClassName, headClassName, isCompleted } = completedTodo(item)
   const todoName = getToDoName(item.todo)
@@ -19,7 +19,7 @@ const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
     <li
       onDragStart={() => handleDragStart(index)}
       onDragOver={() => handleDragOver(index)}
-      onDragEnd={handleDragEnd}
+      onDrop={handleDrop}
       draggable
       key={item.id}
       className={`${listClassName}`}
