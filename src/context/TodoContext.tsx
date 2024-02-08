@@ -71,6 +71,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   const handleEdit = (item: ToDoTypes) => {
     setInputState({ inputValue: item.todo, isInputVisible: true })
     setEditId(item.id)
+    window.scroll({ top: 0, behavior: 'smooth' })
   }
 
   const handleDelete = (item: ToDoTypes) => {
@@ -88,7 +89,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     setToDo(items)
   }
 
-  const handleDragEnd = () => {
+  const handleDrop = () => {
     setDraggedItem(null!)
   }
 
@@ -105,7 +106,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleDelete,
     handleDragStart,
     handleDragOver,
-    handleDragEnd,
+    handleDrop,
   }
   return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>
 }
