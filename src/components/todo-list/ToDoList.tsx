@@ -2,6 +2,7 @@ import { useToDo } from 'context/TodoContext'
 import './ToDoList.css'
 import ToDoCard from 'components/todo-card/ToDoCard'
 import { ToDoTypes } from 'context/TodoContext.types'
+import { Droppable } from 'react-beautiful-dnd'
 
 const ToDoList = () => {
   const { openTodos, completedTodos } = useToDo()
@@ -12,11 +13,16 @@ const ToDoList = () => {
         {openTodos.length === 0 ? (
           <h3>No Open Todos.</h3>
         ) : (
-          <ul>
-            {openTodos.map((item: ToDoTypes, i: number) => (
-              <ToDoCard item={item} index={i} />
-            ))}
-          </ul>
+          <Droppable droppableId="open">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {openTodos.map((item: ToDoTypes, i: number) => (
+                  <ToDoCard item={item} index={i} />
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
         )}
       </div>
       <div className="column">
@@ -24,11 +30,16 @@ const ToDoList = () => {
         {completedTodos.length === 0 ? (
           <h3>No Completed Todos.</h3>
         ) : (
-          <ul>
-            {completedTodos.map((item: ToDoTypes, i: number) => (
-              <ToDoCard item={item} index={i} />
-            ))}
-          </ul>
+          <Droppable droppableId="completed">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {completedTodos.map((item: ToDoTypes, i: number) => (
+                  <ToDoCard item={item} index={i} />
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
         )}
       </div>
     </div>
