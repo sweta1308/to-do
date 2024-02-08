@@ -78,12 +78,32 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   }
 
   const dragEnded = (result: DropResult) => {
-    const { source, destination } = result
+    console.log(result)
+    const { source, destination, draggableId } = result
     if (!destination) return
-    const _arr = [...toDo]
-    const newList = _arr.filter((_: any, idx: number) => idx !== source.index)
-    newList.splice(destination.index, 0, _arr[source.index])
-    setToDo(newList)
+
+    const sourceColumn = source.droppableId
+    const destinationColumn = destination.droppableId
+
+    if (sourceColumn === destinationColumn) {
+      const _arr = [...toDo]
+      const newList = _arr.filter(
+        (_: ToDoTypes, i: number) => i !== source.index,
+      )
+      newList.splice(destination.index, 0, _arr[source.index])
+      setToDo(newList)
+    } else {
+      const updatedTodos = toDo.map((todo) =>
+        todo.id === Number(draggableId)
+          ? {
+              ...todo,
+              status: todo.status === 'completed' ? 'open' : 'completed',
+            }
+          : todo,
+      )
+
+      setToDo(updatedTodos)
+    }
   }
 
   const value = {
