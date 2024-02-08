@@ -6,18 +6,14 @@ type ToDoTypes = {
   status: string
 }
 
-type InputTypes = {
-  isInputVisible: boolean
-  inputValue: string
-}
-
 type ToDoContextProps = {
+  inputValue: string
+  inputRef: React.RefObject<HTMLInputElement>
   openTodos: ToDoTypes[]
   completedTodos: ToDoTypes[]
-  inputState: InputTypes
   handleInputChange: (e: React.FormEvent<HTMLInputElement>) => void
+  handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
   handleCancelClick: () => void
-  handleAddClick: () => void
   handleSubmit: () => void
   handleCheckboxChange: (item: ToDoTypes) => void
   handleEdit: (item: ToDoTypes) => void
@@ -30,4 +26,4 @@ type ToDoContextProps = {
 type ToDoProviderProps = {
   children: ReactNode
 }
-export type { ToDoTypes, InputTypes, ToDoContextProps, ToDoProviderProps }
+export type { ToDoTypes, ToDoContextProps, ToDoProviderProps }
