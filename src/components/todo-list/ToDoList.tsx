@@ -8,40 +8,54 @@ const ToDoList = () => {
   const { openTodos, completedTodos } = useToDo()
   return (
     <div className="todo-list" data-testid="todo-list">
-      <div className="column">
-        <h2 className="open">Open Todos</h2>
-        {openTodos.length === 0 ? (
-          <h3>No Open Todos.</h3>
-        ) : (
-          <Droppable droppableId="open">
-            {(provided) => (
-              <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {openTodos.map((item: ToDoTypes, i: number) => (
-                  <ToDoCard item={item} index={i} />
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
+      <Droppable droppableId="open">
+        {(provided) => (
+          <div
+            className="column"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            <h2 className="open">Open Todos</h2>
+
+            <div>
+              {openTodos.length === 0 ? (
+                <h3>No Open Todos.</h3>
+              ) : (
+                <ul>
+                  {openTodos.map((item: ToDoTypes, i: number) => (
+                    <ToDoCard item={item} index={i} />
+                  ))}
+                </ul>
+              )}
+              {provided.placeholder}
+            </div>
+          </div>
         )}
-      </div>
-      <div className="column">
-        <h2 className="completed">Completed Todos</h2>
-        {completedTodos.length === 0 ? (
-          <h3>No Completed Todos.</h3>
-        ) : (
-          <Droppable droppableId="completed">
-            {(provided) => (
-              <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {completedTodos.map((item: ToDoTypes, i: number) => (
-                  <ToDoCard item={item} index={i} />
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
+      </Droppable>
+      <Droppable droppableId="completed">
+        {(provided) => (
+          <div
+            className="column"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            <h2 className="completed">Completed Todos</h2>
+
+            <div>
+              {completedTodos.length === 0 ? (
+                <h3>No Completed Todos.</h3>
+              ) : (
+                <ul>
+                  {completedTodos.map((item: ToDoTypes, i: number) => (
+                    <ToDoCard item={item} index={i} />
+                  ))}
+                </ul>
+              )}
+              {provided.placeholder}
+            </div>
+          </div>
         )}
-      </div>
+      </Droppable>
     </div>
   )
 }
