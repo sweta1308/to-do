@@ -4,6 +4,7 @@ import {
   ToDoProviderProps,
   ToDoTypes,
 } from './TodoContext.types'
+import { DropResult } from 'react-beautiful-dnd'
 
 const ToDoContext = createContext<ToDoContextProps>(undefined!)
 
@@ -11,7 +12,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   const [inputValue, setInputValue] = useState<string>('')
   const [toDo, setToDo] = useState<ToDoTypes[]>([])
   const [editId, setEditId] = useState<number>(0)
-  const [draggedItem, setDraggedItem] = useState<ToDoTypes>(null!)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const openTodos = toDo.filter(
@@ -77,18 +77,13 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     setInputValue('')
   }
 
-  const handleDragStart = (index: number) => {
-    setDraggedItem(toDo[index])
-  }
-
-  const handleDragOver = (index: number) => {
-    const items = toDo.filter((item) => item !== draggedItem)
-    items.splice(index, 0, draggedItem)
-    setToDo(items)
-  }
-
-  const handleDrop = () => {
-    setDraggedItem(null!)
+  const dragEnded = (result: DropResult) => {
+    const { source, destination } = result
+    if (!destination) return
+    const _arr = [...toDo]
+    const newList = _arr.filter((_: any, idx: number) => idx !== source.index)
+    newList.splice(destination.index, 0, _arr[source.index])
+    setToDo(newList)
   }
 
   const value = {
@@ -103,9 +98,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleCheckboxChange,
     handleEdit,
     handleDelete,
-    handleDragStart,
-    handleDragOver,
-    handleDrop,
+    dragEnded,
   }
   return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>
 }
