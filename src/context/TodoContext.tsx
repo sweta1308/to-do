@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useRef, useState } from 'react'
 import {
-  InputTypes,
   ToDoContextProps,
   ToDoProviderProps,
   ToDoTypes,
@@ -9,13 +8,11 @@ import {
 const ToDoContext = createContext<ToDoContextProps>(undefined!)
 
 export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
-  const [inputState, setInputState] = useState<InputTypes>({
-    isInputVisible: false,
-    inputValue: '',
-  })
+  const [inputValue, setInputValue] = useState<string>('')
   const [toDo, setToDo] = useState<ToDoTypes[]>([])
   const [editId, setEditId] = useState<number>(0)
   const [draggedItem, setDraggedItem] = useState<ToDoTypes>(null!)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const openTodos = toDo.filter(
     ({ status }: { status: string }) => status === 'open',
@@ -24,37 +21,37 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     ({ status }: { status: string }) => status === 'completed',
   )
 
-  const handleAddClick = () =>
-    setInputState({ ...inputState, isInputVisible: true })
-
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) =>
-    setInputState({ ...inputState, inputValue: e.currentTarget.value })
+    setInputValue(e.currentTarget.value)
 
   const handleSubmit = () => {
-    if (inputState.inputValue) {
+    if (inputValue) {
       if (editId > 0) {
         setToDo((prev) =>
           prev.map((item) =>
-            item.id === editId
-              ? { ...item, todo: inputState.inputValue }
-              : item,
+            item.id === editId ? { ...item, todo: inputValue } : item,
           ),
         )
         setEditId(0)
       } else {
         setToDo([
-          { id: toDo.length + 1, todo: inputState.inputValue, status: 'open' },
+          { id: toDo.length + 1, todo: inputValue, status: 'open' },
           ...toDo,
         ])
       }
-      setInputState({ inputValue: '', isInputVisible: false })
+      setInputValue('')
     } else {
       alert('Add some task in input!')
     }
   }
 
-  const handleCancelClick = () =>
-    setInputState({ inputValue: '', isInputVisible: false })
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit()
+    }
+  }
+
+  const handleCancelClick = () => setInputValue('')
 
   const handleCheckboxChange = (item: ToDoTypes) =>
     setToDo((prev: ToDoTypes[]) =>
@@ -69,14 +66,15 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     )
 
   const handleEdit = (item: ToDoTypes) => {
-    setInputState({ inputValue: item.todo, isInputVisible: true })
+    setInputValue(item.todo)
     setEditId(item.id)
     window.scroll({ top: 0, behavior: 'smooth' })
+    inputRef.current?.focus()
   }
 
   const handleDelete = (item: ToDoTypes) => {
     setToDo((prev: ToDoTypes[]) => prev.filter((todo) => todo.id !== item.id))
-    setInputState({ inputValue: '', isInputVisible: false })
+    setInputValue('')
   }
 
   const handleDragStart = (index: number) => {
@@ -94,11 +92,12 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   }
 
   const value = {
-    inputState,
+    inputValue,
+    inputRef,
     openTodos,
     completedTodos,
-    handleAddClick,
     handleInputChange,
+    handleKeyDown,
     handleSubmit,
     handleCancelClick,
     handleCheckboxChange,
