@@ -15,7 +15,7 @@ describe('ToDoCard component', () => {
       handleDelete: jest.fn(),
       handleDragStart: jest.fn(),
       handleDragOver: jest.fn(),
-      handleDragEnd: jest.fn(),
+      handleDrop: jest.fn(),
     })
   })
 
@@ -116,9 +116,9 @@ describe('ToDoCard component', () => {
   })
 
   it('calls handleDragEnd when drag ends', () => {
-    const handleDragEndMock = jest.fn()
+    const handleDropMock = jest.fn()
     ;(useToDo as jest.Mock).mockReturnValue({
-      handleDragEnd: handleDragEndMock,
+      handleDrop: handleDropMock,
     })
     render(
       <ToDoCard
@@ -127,7 +127,7 @@ describe('ToDoCard component', () => {
       />,
     )
     const todoCard = screen.getByTestId('todo-card')
-    fireEvent.dragEnd(todoCard)
-    expect(handleDragEndMock).toHaveBeenCalled()
+    fireEvent.drop(todoCard)
+    expect(handleDropMock).toHaveBeenCalled()
   })
 })
