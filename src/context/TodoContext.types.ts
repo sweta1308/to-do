@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { DropResult } from 'react-beautiful-dnd'
 
 type ToDoTypes = {
   id: number
@@ -18,9 +19,7 @@ type ToDoContextProps = {
   handleCheckboxChange: (item: ToDoTypes) => void
   handleEdit: (item: ToDoTypes) => void
   handleDelete: (item: ToDoTypes) => void
-  handleDragStart: (index: number) => void
-  handleDragOver: (index: number) => void
-  handleDrop: () => void
+  dragEnded: (result: DropResult) => void
 }
 
 type ToDoProviderProps = {
