@@ -14,7 +14,6 @@ type ToDoContextProps = {
   completedTodos: ToDoTypes[]
   handleInputChange: (e: React.FormEvent<HTMLInputElement>) => void
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  handleCancelClick: () => void
   handleSubmit: () => void
   handleCheckboxChange: (item: ToDoTypes) => void
   handleEdit: (item: ToDoTypes) => void
