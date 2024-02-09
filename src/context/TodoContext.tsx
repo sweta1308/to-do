@@ -1,5 +1,11 @@
-import React, { createContext, useContext, useRef, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { toast, useToasterStore } from 'react-hot-toast'
 import {
   ToDoContextProps,
   ToDoProviderProps,
@@ -14,6 +20,8 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   const [toDo, setToDo] = useState<ToDoTypes[]>([])
   const [editId, setEditId] = useState<number>(0)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const { toasts } = useToasterStore()
 
   const openTodos = toDo.filter(
     ({ status }: { status: string }) => status === 'open',
@@ -145,6 +153,13 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
       },
     })
   }
+
+  useEffect(() => {
+    toasts
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= 3)
+      .forEach((t) => toast.dismiss(t.id))
+  }, [toasts])
 
   const value = {
     inputValue,
