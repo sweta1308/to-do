@@ -51,8 +51,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     }
   }
 
-  const handleCancelClick = () => setInputValue('')
-
   const handleCheckboxChange = (item: ToDoTypes) =>
     setToDo((prev: ToDoTypes[]) =>
       prev.map((todo) =>
@@ -114,7 +112,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleInputChange,
     handleKeyDown,
     handleSubmit,
-    handleCancelClick,
     handleCheckboxChange,
     handleEdit,
     handleDelete,
