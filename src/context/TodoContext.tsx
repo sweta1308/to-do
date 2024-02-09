@@ -68,7 +68,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     }
   }
 
-  const handleCheckboxChange = (item: ToDoTypes) =>
+  const handleCheckboxChange = (item: ToDoTypes) => {
     setToDo((prev: ToDoTypes[]) =>
       prev.map((todo) =>
         todo.id === item.id
@@ -79,6 +79,15 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
           : todo,
       ),
     )
+    toast('Todo updated successfully!', {
+      icon: '✍🏻',
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    })
+  }
 
   const handleEdit = (item: ToDoTypes) => {
     setInputValue(item.todo)
