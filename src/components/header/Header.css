@@ -1,44 +1,62 @@
+.text-input {
+  margin-right: 10px;
+  width: 300px;
+  color: rgb(36, 35, 42);
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 28px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  box-shadow:
+    rgb(0 0 0 / 12%) 0px 1px 3px,
+    rgb(0 0 0 / 24%) 0px 1px 2px;
+  background: rgb(251, 251, 251);
+  transition: all 0.1s ease 0s;
+  outline: none;
+}
+
 .button {
-  background-color: rgb(247, 108, 108);
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  font-size: 18px;
+  outline: 0;
   cursor: pointer;
-  transition: all 0.3s ease-in;
+  border-radius: 6px;
+  border: 2px solid #ff4742;
+  color: #fff;
+  background-color: #ff4742;
+  padding: 8px;
+  box-shadow:
+    rgba(0, 0, 0, 0.07) 0px 2px 4px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
+  font-weight: 800;
+  font-size: 16px;
 }
 
 .button:hover {
-  border-radius: 10px;
-  background-color: rgb(222, 66, 66);
+  background: 0 0;
+  color: #ff4742;
 }
 
-.cancel-btn {
-  padding: 10px 15px;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.cancel-btn:hover {
-  background-color: blanchedalmond;
-}
-
-.text-input {
-  padding: 10px 5px;
-  margin-right: 10px;
-  width: 300px;
+.text-input:focus {
+  border: 1px solid rgb(9, 9, 11);
 }
 
 .inputs {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
 }
 
 @media (max-width: 676px) {
   .inputs {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    width: 90%;
+  }
+
+  .text-input {
+    width: 74%;
+  }
+
+  .button {
+    width: 23%;
   }
 }
