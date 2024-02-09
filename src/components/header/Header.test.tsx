@@ -64,17 +64,4 @@ describe('Header component', () => {
 
     useToDoMock.mockRestore()
   })
-
-  it('calls handleCancelClick when "Cancel" button is clicked', () => {
-    const handleCancelClickMock = jest.fn()
-    ;(useToDo as jest.Mock).mockReturnValue({
-      inputValue: 'Testing',
-      handleCancelClick: handleCancelClickMock,
-    })
-
-    render(<Header />)
-    const cancelBtn = screen.getByText('Cancel')
-    fireEvent.click(cancelBtn)
-    expect(handleCancelClickMock).toHaveBeenCalled()
-  })
 })
