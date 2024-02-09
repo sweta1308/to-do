@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useRef, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import {
   ToDoContextProps,
   ToDoProviderProps,
@@ -33,11 +34,27 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
           ),
         )
         setEditId(0)
+        toast('Todo updated successfully!', {
+          icon: '✍🏻',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        })
       } else {
         setToDo([
           { id: toDo.length + 1, todo: inputValue, status: 'open' },
           ...toDo,
         ])
+        toast('Todo added successfully!', {
+          icon: '👏',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        })
       }
       setInputValue('')
     } else {
@@ -73,6 +90,14 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
   const handleDelete = (item: ToDoTypes) => {
     setToDo((prev: ToDoTypes[]) => prev.filter((todo) => todo.id !== item.id))
     setInputValue('')
+    toast('Todo deleted!', {
+      icon: '❓',
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    })
   }
 
   const dragEnded = (result: DropResult) => {
