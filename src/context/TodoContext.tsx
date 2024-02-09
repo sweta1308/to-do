@@ -127,6 +127,14 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
 
       setToDo(updatedTodos)
     }
+    toast('Todo updated successfully!', {
+      icon: '✍🏻',
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    })
   }
 
   const value = {
