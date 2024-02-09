@@ -18,7 +18,7 @@ type ToDoContextProps = {
   handleCheckboxChange: (item: ToDoTypes) => void
   handleEdit: (item: ToDoTypes) => void
   handleDelete: (item: ToDoTypes) => void
-  dragEnded: (result: DropResult) => void
+  handleDragEnd: (result: DropResult) => void
 }
 
 type ToDoProviderProps = {

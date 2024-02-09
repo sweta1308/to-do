@@ -4,14 +4,14 @@ import { Header, ToDoList } from 'components'
 import { useToDo } from 'context/TodoContext'
 
 const Home = () => {
-  const { dragEnded } = useToDo()
+  const { handleDragEnd } = useToDo()
   return (
     <div className="home">
       <nav id="nav">
         <h1>To Do App</h1>
       </nav>
       <Header />
-      <DragDropContext onDragEnd={dragEnded}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <ToDoList />
       </DragDropContext>
     </div>

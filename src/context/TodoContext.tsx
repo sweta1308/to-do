@@ -117,8 +117,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     })
   }
 
-  const dragEnded = (result: DropResult) => {
-    console.log(result)
+  const handleDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result
     if (!destination) return
 
@@ -172,7 +171,7 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
     handleCheckboxChange,
     handleEdit,
     handleDelete,
-    dragEnded,
+    handleDragEnd,
   }
   return <ToDoContext.Provider value={value}>{children}</ToDoContext.Provider>
 }
