@@ -7,7 +7,9 @@ const Home = () => {
   const { dragEnded } = useToDo()
   return (
     <div className="home">
-      <h1>To Do App</h1>
+      <nav id="nav">
+        <h1>To Do App</h1>
+      </nav>
       <Header />
       <DragDropContext onDragEnd={dragEnded}>
         <ToDoList />
