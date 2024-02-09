@@ -7,7 +7,6 @@ const Header = () => {
     inputValue,
     handleSubmit,
     handleInputChange,
-    handleCancelClick,
     handleKeyDown,
     inputRef,
   } = useToDo()
@@ -26,14 +25,9 @@ const Header = () => {
         onChange={(e) => handleInputChange(e)}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <div>
-        <button onClick={handleSubmit} className="button">
-          Submit
-        </button>
-        <button onClick={handleCancelClick} className="cancel-btn">
-          Cancel
-        </button>
-      </div>
+      <button onClick={handleSubmit} className="button">
+        Submit
+      </button>
     </div>
   )
 }
