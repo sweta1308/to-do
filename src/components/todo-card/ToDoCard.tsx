@@ -30,10 +30,10 @@ const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
             {!isCompleted && (
               <div className="buttons">
                 <button onClick={() => handleEdit(item)} className="edit">
-                  Edit
+                  <i className="fa-regular fa-pen-to-square"></i>
                 </button>
                 <button onClick={() => handleDelete(item)} className="delete">
-                  Delete
+                  <i className="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             )}
