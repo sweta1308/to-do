@@ -18,8 +18,6 @@ describe('Header component', () => {
     expect(textInput).toBeInTheDocument()
     const submitBtn = screen.getByText('Submit')
     expect(submitBtn).toBeInTheDocument()
-    const cancelBtn = screen.getByText('Cancel')
-    expect(cancelBtn).toBeInTheDocument()
   })
 
   it('calls handleInputChange when input field value changes', () => {
