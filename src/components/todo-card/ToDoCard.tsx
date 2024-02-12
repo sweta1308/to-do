@@ -1,4 +1,4 @@
-import { useToDo } from 'context/TodoContext'
+import { useToDo } from '../../context/TodoContext'
 import './ToDoCard.css'
 import { ToDoTypes } from 'context/TodoContext.types'
 import { completedTodo } from 'utils/ToDoClassName'
@@ -29,10 +29,18 @@ const ToDoCard = ({ item, index }: { item: ToDoTypes; index: number }) => {
             <div className={`todo-head ${headClassName}`}>{todoName}</div>
             {!isCompleted && (
               <div className="buttons">
-                <button onClick={() => handleEdit(item)} className="edit">
+                <button
+                  data-testid="edit"
+                  onClick={() => handleEdit(item)}
+                  className="edit"
+                >
                   <i className="fa-regular fa-pen-to-square"></i>
                 </button>
-                <button onClick={() => handleDelete(item)} className="delete">
+                <button
+                  data-testid="delete"
+                  onClick={() => handleDelete(item)}
+                  className="delete"
+                >
                   <i className="fa-solid fa-trash-can"></i>
                 </button>
               </div>
