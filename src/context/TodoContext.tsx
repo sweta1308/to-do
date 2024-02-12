@@ -140,7 +140,6 @@ export const ToDoProvider: React.FC<ToDoProviderProps> = ({ children }) => {
             }
           : todo,
       )
-
       setToDo(updatedTodos)
     }
     toast('Todo updated successfully!', {
