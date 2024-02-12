@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import '@testing-library/jest-dom'
 import ToDoList from './ToDoList'
 import { useToDo } from 'context/TodoContext'
@@ -19,7 +20,12 @@ jest.mock('../../context/TodoContext', () => ({
 
 describe('ToDoList Component', () => {
   it('renders open and completed todos correctly', () => {
-    render(<ToDoList />)
+    const dragEnd = (result: DropResult) => console.log(result)
+    render(
+      <DragDropContext onDragEnd={dragEnd}>
+        <ToDoList />
+      </DragDropContext>,
+    )
 
     expect(screen.getByText('Open Todos')).toBeInTheDocument()
     expect(screen.getByText('Open Todo 1')).toBeInTheDocument()
@@ -41,7 +47,12 @@ describe('ToDoList Component', () => {
       ],
     })
 
-    render(<ToDoList />)
+    const dragEnd = (result: DropResult) => console.log(result)
+    render(
+      <DragDropContext onDragEnd={dragEnd}>
+        <ToDoList />
+      </DragDropContext>,
+    )
 
     expect(screen.getByText('No Open Todos.')).toBeInTheDocument()
   })
@@ -56,7 +67,12 @@ describe('ToDoList Component', () => {
       completedTodos: [],
     })
 
-    render(<ToDoList />)
+    const dragEnd = (result: DropResult) => console.log(result)
+    render(
+      <DragDropContext onDragEnd={dragEnd}>
+        <ToDoList />
+      </DragDropContext>,
+    )
 
     expect(screen.getByText('No Completed Todos.')).toBeInTheDocument()
   })
